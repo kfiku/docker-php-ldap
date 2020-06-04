@@ -6,14 +6,15 @@ ENV TIMEZONE=Europe/Prague
 RUN apk update && apk add --no-cache \
     bash \
     git \
-    sqlite \
-    unzip \
-    zlib \
-    libcrypto1.0 \
-    openssh-client \
+    libcrypto1.1 \
+    libressl \
+    libzip \
     openldap \
     openldap-back-mdb \
-    libressl
+    openssh-client \
+    sqlite \
+    unzip \
+    zlib
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -28,6 +29,7 @@ RUN echo 'alias sf="php bin/console"' >> ~/.bashrc
 
 RUN apk add --no-cache --virtual .build-deps \
         openldap-dev \
+        libzip-dev \
         zlib-dev && \
     docker-php-ext-install -j$(nproc) \
         zip \

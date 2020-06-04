@@ -7,5 +7,5 @@ RUN apk add --no-cache \
         autoconf \
         automake  \
         build-base
-RUN pecl install xdebug-2.6.0
+RUN pecl install xdebug-2.9.6
 RUN docker-php-ext-enable xdebug
